@@ -27,7 +27,7 @@ public class InputHandler : MonoBehaviour
 
         if (Physics.Raycast(_ray, out hit, Mathf.Infinity))
         {
-            if (hit.collider.gameObject.TryGetComponent(out Cube cube))
+            if (hit.collider.TryGetComponent(out Cube cube))
             {
                 cube.Destroy();
                 _audioSource.Play();

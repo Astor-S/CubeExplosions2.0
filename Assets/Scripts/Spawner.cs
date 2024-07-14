@@ -30,11 +30,11 @@ public class Spawner : MonoBehaviour
 
     private void OnClicked(Cube cube)
     {
-        List<Cube> createdCubes = new List<Cube>();
-
         if (cube.ChanceSeparate >= UnityEngine.Random.Range(_minChance, _maxChance) && cube.ChanceSeparate > 0)
         {
             int countSpawn = RandomizeCount();
+            
+            List<Cube> createdCubes = new List<Cube>();
 
             for (int i = _minCount; i <= countSpawn; i++)
             {
@@ -44,6 +44,13 @@ public class Spawner : MonoBehaviour
             _cubes.Remove(cube);
             cube.Clicked -= OnClicked;
             _explosion.Explode(cube.transform.position, createdCubes);
+        }
+        else
+        {
+            _cubes.Remove(cube);
+            cube.Clicked -= OnClicked;
+            _explosion.ExplodeWithoutSeparation(cube.transform.position, _cubes);
+            Destroy(cube.gameObject);
         }
     }
 
