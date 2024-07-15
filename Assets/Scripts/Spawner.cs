@@ -57,7 +57,7 @@ public class Spawner : MonoBehaviour
     private Cube InstantiateCubes(Cube cube)
     {
         Cube newCube = Instantiate(_cubePrefab, cube.transform.position, Quaternion.identity);
-        newCube.Initialize(cube.transform.localScale/ _decreaseScale, cube.ChanceSeparate/ _decreaseChance, this);
+        newCube.Initialize(cube.transform.localScale/ _decreaseScale, cube.ChanceSeparate/ _decreaseChance);
         newCube.Clicked += OnClicked;
 
         _cubes.Add(newCube);
